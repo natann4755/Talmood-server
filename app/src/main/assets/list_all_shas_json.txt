@@ -1,0 +1,221 @@
+{
+  "seder":[
+            {
+                "name" : "זרעים",
+                "masechtot":
+                [
+                  {
+                    "masechet": "ברכות",
+                    "pages" : 63
+                  }
+
+                ]
+            },
+
+
+          {
+                "name" : "מועד",
+                "masechtot":
+                [
+                  {
+                    "masechet": "שבת",
+                    "pages" : 156
+                  },
+                  {
+                    "masechet": "עירובין",
+                    "pages" : 104
+                  },
+                  {
+                    "masechet": "פסחים",
+                    "pages" : 120
+                  },
+                   {
+                   "masechet": "שקלים",
+                   "pages" : 21
+                   },
+                  {
+                    "masechet": "ראש השנה",
+                    "pages" : 34
+                  },
+                  {
+                    "masechet": "יומא",
+                    "pages" : 87
+                  },
+                  {
+                    "masechet": "סוכה",
+                    "pages" : 55
+                  },
+                  {
+                    "masechet": "ביצה",
+                    "pages" : 39
+                  },
+                  {
+                    "masechet": "תענית",
+                    "pages" : 30
+                  },
+                  {
+                    "masechet": "מגילה",
+                    "pages" : 31
+                  },
+                  {
+                    "masechet": "מועד קטן",
+                    "pages" : 28
+                  },
+                  {
+                    "masechet": "חגיגה",
+                    "pages" : 26
+                  }
+
+               ]
+
+          },
+
+          {
+                "name" : "נשים",
+                "masechtot":
+                [
+                  {
+                    "masechet": "יבמות",
+                    "pages" : 121
+                  },
+                  {
+                    "masechet": "כתובות",
+                    "pages" : 111
+                  },
+                  {
+                    "masechet": "נדרים",
+                    "pages" : 90
+                  },
+                  {
+                    "masechet": "נזיר",
+                    "pages" : 65
+                  },
+                  {
+                    "masechet": "סוטה",
+                    "pages" : 48
+                  },
+                  {
+                    "masechet": "גיטין",
+                    "pages" : 89
+                  },
+                  {
+                    "masechet": "קידושין",
+                    "pages" : 81
+                  }
+
+               ]
+
+          },
+
+          {
+                "name" : "נזיקין",
+                "masechtot":
+                [
+                  {
+                    "masechet": "בבא קמא",
+                    "pages" : 118
+                  },
+                  {
+                    "masechet": "בבא מציעא",
+                    "pages" : 118
+                  },
+                  {
+                    "masechet": "בבא בתרא",
+                    "pages" : 175
+                  },
+                  {
+                    "masechet": "סנהדרין",
+                    "pages" : 112
+                  },
+                  {
+                    "masechet": "מכות",
+                    "pages" : 23
+                  },
+                  {
+                    "masechet": "שבועות",
+                    "pages" : 48
+                  },
+                  {
+                    "masechet": "עבודה זרה",
+                    "pages" : 75
+                  },
+                  {
+                    "masechet": "הוריות",
+                    "pages" : 13
+                  }
+
+               ]
+
+          },
+
+          {
+                "name" : "קדשים",
+                "masechtot":
+                [
+                  {
+                    "masechet": "זבחים",
+                    "pages" : 119
+                  },
+                  {
+                    "masechet": "מנחות",
+                    "pages" : 109
+                  },
+                  {
+                    "masechet": "חולין",
+                    "pages" : 141
+                  },
+                  {
+                    "masechet": "בכורות",
+                    "pages" : 60
+                  },
+                  {
+                    "masechet": "ערכין",
+                    "pages" : 33
+                  },
+                  {
+                    "masechet": "תמורה",
+                    "pages" : 33
+                  },
+                  {
+                    "masechet": "כריתות",
+                    "pages" : 27
+                  },
+                  {
+                    "masechet": "מעילה",
+                    "pages" : 20
+                  },
+                  {
+                    "masechet": "קינים",
+                    "pages" : 3
+                  },
+                  {
+                    "masechet": "תמיד",
+                    "pages" : 9
+                  },
+                  {
+                    "masechet": "מידות",
+                    "pages" : 4
+                  }
+
+               ]
+
+          },
+
+          {
+                "name" : "טהרות",
+                "masechtot":
+                [
+                  {
+                    "masechet": "נדה",
+                    "pages" : 72
+                  }
+
+                ]
+
+            }
+
+
+
+
+    ]
+}

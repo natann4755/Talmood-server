@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/one_daf_checkbox"
+            android:layout_height="wrap_content"
+            android:buttonTint="#00b2ab"
+            android:layout_marginStart="20dp"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/one_daf_Tv_masechet"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            tools:text="שבת"/>
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/one_daf_Tv_numPage"
+            android:layout_weight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            tools:text="קט"
+            />
+        <TextView
+            android:id="@+id/one_daf_Tv_date"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:visibility="visible"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            tools:text="א תמוז תשפ"
+            />
+
+
+            <TextView
+                android:id="@+id/IRD_show_daf_TV"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="הצג"
+                android:textSize="22sp"
+                android:layout_marginEnd="7dp"
+                android:gravity="center_vertical"
+               />
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/one_daf_chazara_LL"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.9"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:gravity="start"
+            android:layout_height="wrap_content"
+            tools:text="חזרות"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/chazara_1_CB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:buttonTint="#00b2ab"
+                android:checked="false"
+                android:layout_marginStart="20dp"
+                />
+            <CheckBox
+                android:id="@+id/chazara_2_CB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:buttonTint="#00b2ab"
+                android:checked="false"
+                android:layout_marginStart="20dp"
+                />
+            <CheckBox
+                android:id="@+id/chazara_3_CB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:buttonTint="#00b2ab"
+                android:layout_marginStart="20dp"
+                android:checked="false"
+               />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"/>
+
+</LinearLayout>

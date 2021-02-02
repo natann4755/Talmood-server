@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".fragment.DeleteStudyFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="איזה לימוד ברצונך למחוק?"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/delete_typeOfStudy_RG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="RedundantNamespace">
+
+            <RadioButton
+                android:id="@+id/typeOfStudy1_RB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                />
+
+            <RadioButton
+                android:id="@+id/typeOfStudy2_RB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <RadioButton
+                android:id="@+id/typeOfStudy3_RB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </RadioGroup>
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/delete_typeOfStudy1_CB"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/delete_typeOfStudy1_TV"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="דף היומי"/>-->
+<!--    -->
+
+<!--    <LinearLayout-->
+<!--        android:visibility="gone"-->
+<!--        android:id="@+id/delete_typeOfStudy2_LL"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center">-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/delete_typeOfStudy2_CB"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/delete_typeOfStudy2_TV"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="דף היומי"/>-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:visibility="gone"-->
+<!--        android:id="@+id/delete_typeOfStudy3_LL"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center">-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/delete_typeOfStudy3_CB"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/delete_typeOfStudy3_TV"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="דף היומי"/>-->
+<!--    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/delete_Study_BU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מחק"
+        />
+
+</LinearLayout>

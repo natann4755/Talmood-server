@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.NumberOfRepetitionsProfileFragment">
+
+    <Button
+        android:id="@+id/NumberOfRep_ok_BU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/do_you_want_to_return" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/Profile_numberOfReps_RG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="RedundantNamespace">
+
+            <RadioButton
+                android:id="@+id/radio_No_thanks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/no_thanks" />
+
+            <RadioButton
+                android:id="@+id/radio_Once"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/one_time" />
+
+            <RadioButton
+                android:id="@+id/radio_Twice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/twice" />
+
+            <RadioButton
+                android:id="@+id/radio_3_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/three_times" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>

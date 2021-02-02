@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragment.ShewStudyRvFragment">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_type_list"
+            android:layout_width="match_parent"
+            style="@style/Base.Widget.Design.TabLayout"
+            app:tabTextColor="@android:color/black"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:layout_marginTop="12dp"
+            android:id="@+id/show_study_RV_masechtot"
+            android:visibility="gone"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/show_study__RV_dapim"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@android:color/black">
+
+            <TextView
+                android:id="@+id/show_study_summary_typeOfLearning_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="מסכת ברכות"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/show_study_summary_learned_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="5dp"/>
+
+            <TextView
+                android:id="@+id/show_study_summary_total_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="200"
+                android:textColor="@android:color/white"/>
+
+        </LinearLayout>
+    </LinearLayout>
