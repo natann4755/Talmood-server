@@ -16,7 +16,8 @@ public class Learning {
     private List <DafLearned> dafLearned;
 
     @Ignore
-    private ArrayList<Daf> allDafs;
+    private ArrayList<DafLearned> allDafsToShow;
+
 
     public StudyPlan getStudyPlan() {
         return mStudyPlan;
@@ -34,11 +35,8 @@ public class Learning {
         this.dafLearned = dafLearned;
     }
 
-    public ArrayList<Daf> getAllDafs() {
-        return allDafs;
-    }
+    public ArrayList<DafLearned> getAllDafsToShow() { return allDafsToShow; }
 
-    public void setAllDafs(ArrayList<Daf> allDafs) {
-        this.allDafs = allDafs;
-    }
+    public void setAllDafsToShow(ArrayList<DafLearned> allDafsToShow) { this.allDafsToShow = allDafsToShow; }
+
 }

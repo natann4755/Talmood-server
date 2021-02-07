@@ -1,32 +1,43 @@
 package com.example.model;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
-@Entity(foreignKeys = @ForeignKey(entity = StudyPlan.class,
+@Entity(primaryKeys = {"studyPlanID","masechetName","pageNumber"},foreignKeys = @ForeignKey(entity = StudyPlan.class,
         parentColumns = "id",
         childColumns = "studyPlanID",
         onDelete = ForeignKey.CASCADE))
-public class DafLearned {
+public class DafLearned implements Parcelable{
 
-    @PrimaryKey
     private int dafLearnedId;
     private int studyPlanID;
+    @NonNull
     private String masechetName;
     private int pageNumber;
     private int chazara;
     private int indexInListDafs;
+    @Ignore
+    private boolean isLearned;
+    @Ignore
+    private String pageDate;
 
-    public DafLearned(int studyPlanID, String masechetName, int pageNumber, int chazara, int indexInListDafs) {
+    public DafLearned(int studyPlanID, @NonNull String masechetName, int pageNumber, boolean isLearned, int chazara, int indexInListDafs) {
         this.studyPlanID = studyPlanID;
         this.masechetName = masechetName;
         this.pageNumber = pageNumber;
         this.chazara = chazara;
         this.indexInListDafs = indexInListDafs;
+        this.isLearned = isLearned;
+    }
+
+    public DafLearned() {
     }
 
     public int getDafLearnedId() {
@@ -65,5 +76,54 @@ public class DafLearned {
 
     public void setIndexInListDafs(int indexInListDafs) {
         this.indexInListDafs = indexInListDafs;
+    }
+
+    public boolean isLearned() { return isLearned; }
+
+    public void setLearned(boolean learned) { isLearned = learned; }
+
+    public String getPageDate() { return pageDate; }
+
+    public void setPageDate(String pageDate) { this.pageDate = pageDate; }
+
+    protected DafLearned(Parcel in) {
+        dafLearnedId = in.readInt();
+        studyPlanID = in.readInt();
+        masechetName = in.readString();
+        pageNumber = in.readInt();
+        chazara = in.readInt();
+        indexInListDafs = in.readInt();
+        isLearned = in.readByte() != 0;
+        pageDate = in.readString();
+    }
+
+    public static final Creator<DafLearned> CREATOR = new Creator<DafLearned>() {
+        @Override
+        public DafLearned createFromParcel(Parcel in) {
+            return new DafLearned(in);
+        }
+
+        @Override
+        public DafLearned[] newArray(int size) {
+            return new DafLearned[size];
+        }
+    };
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(dafLearnedId);
+        dest.writeInt(studyPlanID);
+        dest.writeString(masechetName);
+        dest.writeInt(pageNumber);
+        dest.writeInt(chazara);
+        dest.writeInt(indexInListDafs);
+        dest.writeByte((byte) (isLearned ? 1 : 0));
+        dest.writeString(pageDate);
     }
 }

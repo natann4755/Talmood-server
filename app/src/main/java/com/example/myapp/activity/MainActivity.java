@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.room.Ignore;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
     public final static String KEY_STUDY_2 = "KEY_STUDY_2";
     public final static String KEY_STUDY_3 = "KEY_STUDY_3";
 
-    private ArrayList<Daf> myStudy1;
-    private ArrayList<Daf> myStudy2;
-    private ArrayList<Daf> myStudy3;
+    private ArrayList<DafLearned> myStudy1;
+    private ArrayList<DafLearned> myStudy2;
+    private ArrayList<DafLearned> myStudy3;
     private ShewStudyRvFragment mShewStudyRvFragment;
 
 
@@ -82,51 +83,74 @@ public class MainActivity extends AppCompatActivity {
         initAllDafs(mLearning);
 
        if (mLearning.size() == 1){
-           myStudy1 = mLearning.get(0).getAllDafs();
+           myStudy1 = mLearning.get(0).getAllDafsToShow();
        }
         if (mLearning.size() == 2){
-            myStudy1 = mLearning.get(0).getAllDafs();
-            myStudy2 = mLearning.get(1).getAllDafs();
+            myStudy1 = mLearning.get(0).getAllDafsToShow();
+            myStudy2 = mLearning.get(1).getAllDafsToShow();
         }
         if (mLearning.size() == 3){
-            myStudy1 = mLearning.get(0).getAllDafs();
-            myStudy2 = mLearning.get(1).getAllDafs();
-            myStudy3 = mLearning.get(2).getAllDafs();
+            myStudy1 = mLearning.get(0).getAllDafsToShow();
+            myStudy2 = mLearning.get(1).getAllDafsToShow();
+            myStudy3 = mLearning.get(2).getAllDafsToShow();
         }
     }
 
     private void initAllDafs(ArrayList<Learning> mLearning) {
         for (Learning learning : mLearning) {
             if (learning.getStudyPlan().getTypeOfStudy().equals(stringDafHayomi)) {
-                learning.setAllDafs(createListDafHayomi(learning.getStudyPlan()));
+                learning.setAllDafsToShow(createListDafHayomi(learning.getStudyPlan()));
             } else {
-                learning.setAllDafs(createListMasechet(learning.getStudyPlan()));
+                learning.setAllDafsToShow(createListMasechet(learning.getStudyPlan()));
             }
             updateDafsLearned(learning);
         }
     }
 
+
     private void updateDafsLearned(Learning learning) {
         for (DafLearned dafLearned:learning.getDafLearned()) {
-            if (dafLearned.getStudyPlanID() == learning.getStudyPlan().getId()){
-                learning.getAllDafs().get(dafLearned.getIndexInListDafs()).setLearning(true);
-                learning.getAllDafs().get(dafLearned.getIndexInListDafs()).setChazara(dafLearned.getChazara());
-            }
+           DafLearned mCorrectDafLearned = learning.getAllDafsToShow().get(dafLearned.getIndexInListDafs());
+           if (!mCorrectDafLearned.getMasechetName().equals(dafLearned.getMasechetName()) || mCorrectDafLearned.getPageNumber() != (dafLearned.getPageNumber())){
+               mCorrectDafLearned = findDafIfIndexInListNotCorrect(dafLearned, learning.getAllDafsToShow());
+           }
+
+           if (mCorrectDafLearned != null) {
+               mCorrectDafLearned.setDafLearnedId(dafLearned.getDafLearnedId());
+               mCorrectDafLearned.setLearned(true);
+               mCorrectDafLearned.setChazara(dafLearned.getChazara());
+           }
+
+
+//            if (dafLearned.getMasechetName().equals() == learning.getStudyPlan().getId()){
+//                learning.getAllDafs().get(dafLearned.getIndexInListDafs()).setLearning(true);
+//                learning.getAllDafs().get(dafLearned.getIndexInListDafs()).setChazara(dafLearned.getChazara());
+//            }
         }
     }
 
+    private DafLearned findDafIfIndexInListNotCorrect(DafLearned dafLearned, ArrayList<DafLearned> allDafsToShow) {
+        for (DafLearned dafFromDafsToShow :allDafsToShow) {
+            if (dafFromDafsToShow.getMasechetName().equals(dafLearned.getMasechetName()) || dafFromDafsToShow.getPageNumber() == dafLearned.getPageNumber()){
+                return dafFromDafsToShow;
+            }
+        }
+        return null;
+    }
 
 
-    private ArrayList<Daf> createListDafHayomi(StudyPlan mStudyPlan) {
-        ArrayList <Daf> allDafs = new ArrayList<>();
+    private ArrayList<DafLearned> createListDafHayomi(StudyPlan mStudyPlan) {
+        ArrayList <DafLearned> allDafs = new ArrayList<>();
         Calendar dateDafHayomi = UtilsCalender.findDateOfStartDafHayomiEnglishDate();
         for (int i = 0; i < mAllShas.getSeder().size(); i++) {
             for (int j = 0; j < mAllShas.getSeder().get(i).getMasechtot().size(); j++) {
                 for (int k = 2; k < (mAllShas.getSeder().get(i).getMasechtot().get(j).getPages() + 2); k++) {
                     int masechetPage = ConvertIntToPage.fixKinimTamidMidot(k, mAllShas.getSeder().get(i).getMasechtot().get(j).getName());
-                    Daf mPage = new Daf(mAllShas.getSeder().get(i).getMasechtot().get(j).getName(), masechetPage, stringDafHayomi, mStudyPlan.getId());
-                    mPage.setPageDate(UtilsCalender.dateStringFormat(dateDafHayomi));
-                    allDafs.add(mPage);
+//                    Daf mPage = new Daf(mAllShas.getSeder().get(i).getMasechtot().get(j).getName(), masechetPage, stringDafHayomi, mStudyPlan.getId());
+                    DafLearned mDafLearned = new DafLearned(mStudyPlan.getId(),mAllShas.getSeder().get(i).getMasechtot().get(j).getName(),
+                            masechetPage,false, 0,k-2);
+                    mDafLearned.setPageDate(UtilsCalender.dateStringFormat(dateDafHayomi));
+                    allDafs.add(mDafLearned);
                     dateDafHayomi.add(Calendar.DATE, 1);
                 }
             }
@@ -134,12 +158,14 @@ public class MainActivity extends AppCompatActivity {
         return allDafs;
     }
 
-    private ArrayList<Daf> createListMasechet(StudyPlan mStudyPlan) {
+    private ArrayList<DafLearned> createListMasechet(StudyPlan mStudyPlan) {
         int pages = findPageSum(mStudyPlan.getTypeOfStudy());
-        ArrayList <Daf> allDafs = new ArrayList<>();
+        ArrayList <DafLearned> allDafs = new ArrayList<>();
         for (int i = 2; i < (pages + 2); i++) {
-            allDafs.add(new Daf(mStudyPlan.getTypeOfStudy(), ConvertIntToPage.fixKinimTamidMidot(i, mStudyPlan.getTypeOfStudy()),
-                    mStudyPlan.getTypeOfStudy(), mStudyPlan.getId()));
+//            allDafs.add(new Daf(mStudyPlan.getTypeOfStudy(), ConvertIntToPage.fixKinimTamidMidot(i, mStudyPlan.getTypeOfStudy()),
+//                    mStudyPlan.getTypeOfStudy(), mStudyPlan.getId()));
+            allDafs.add(new DafLearned(mStudyPlan.getId(), mStudyPlan.getTypeOfStudy(),ConvertIntToPage.fixKinimTamidMidot(i, mStudyPlan.getTypeOfStudy()),
+                    false,0,i-2));
         }
         return allDafs;
     }
@@ -183,14 +209,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_type_of_study_MENU_I:
-                if (checkIfCanOpenTypeOfStudy()) {
-                    startActivity(new Intent(this, ProfileActivity.class));
-                } else {
-                    ToastAndDialog.toast(this, getString(R.string.more_than_thre_types_of_study));
-                }
+//                if (checkIfCanOpenTypeOfStudy()) {
+//                    startActivity(new Intent(this, ProfileActivity.class));
+//                } else {
+//                    ToastAndDialog.toast(this, getString(R.string.more_than_thre_types_of_study));
+//                }
                 return true;
             case R.id.delete_type_of_study_MENU_I:
-                openFragment(DeleteStudyFragment.newInstance(myStudy1, myStudy2, myStudy3), DeleteStudyFragment.TAG);
+//                openFragment(DeleteStudyFragment.newInstance(myStudy1, myStudy2, myStudy3), DeleteStudyFragment.TAG);
                 return true;
             case R.id.edit_profile_MENU_I:
                 // TODO: edit profile
@@ -203,17 +229,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void initButtonsTypesStudy() {
         if (myStudy1 != null && myStudy1.size() > 0) {
-            binding.typeOfStudy1BU.setText(myStudy1.get(0).getTypeOfStudy());
+//            binding.typeOfStudy1BU.setText(myStudy1.get(0).getTypeOfStudy());
         }
         if (myStudy2 != null && myStudy2.size() > 0) {
             binding.typeOfStudy2BU.setVisibility(View.VISIBLE);
-            binding.typeOfStudy2BU.setText(myStudy2.get(0).getTypeOfStudy());
+//            binding.typeOfStudy2BU.setText(myStudy2.get(0).getTypeOfStudy());
         } else {
             binding.typeOfStudy2BU.setVisibility(View.GONE);
         }
         if (myStudy3 != null && myStudy3.size() > 0) {
             binding.typeOfStudy3BU.setVisibility(View.VISIBLE);
-            binding.typeOfStudy3BU.setText(myStudy3.get(0).getTypeOfStudy());
+//            binding.typeOfStudy3BU.setText(myStudy3.get(0).getTypeOfStudy());
         } else {
             binding.typeOfStudy3BU.setVisibility(View.GONE);
         }
@@ -226,10 +252,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private boolean checkIfCanOpenTypeOfStudy() {
-        ArrayList<Integer> mLeaning = (ArrayList<Integer>) AppDataBase.getInstance(this).daoLearning().getAllIndexTypeOfLeaning();
-        return !mLeaning.contains(index1) || !mLeaning.contains(index2) || !mLeaning.contains(index3);
-    }
+//    private boolean checkIfCanOpenTypeOfStudy() {
+//        ArrayList<Integer> mLeaning = (ArrayList<Integer>) AppDataBase.getInstance(this).daoLearning().getAllIndexTypeOfLeaning();
+//        return !mLeaning.contains(index1) || !mLeaning.contains(index2) || !mLeaning.contains(index3);
+//    }
 
     @Override
     public void onBackPressed() {

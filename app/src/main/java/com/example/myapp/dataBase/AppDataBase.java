@@ -8,7 +8,7 @@ import com.example.model.Daf;
 import com.example.model.DafLearned;
 import com.example.model.StudyPlan;
 
-@Database(entities = {Daf.class, DafLearned.class, StudyPlan.class}, version = 10,exportSchema = false)
+@Database(entities = {DafLearned.class, StudyPlan.class}, version = 12,exportSchema = false)
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "DataBaseLearning";
     static AppDataBase INSTANCE;

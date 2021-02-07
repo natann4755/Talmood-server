@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.model.Daf;
+import com.example.model.DafLearned;
 import com.example.model.enums.FILTERS;
 import com.example.myapp.R;
 import com.example.myapp.dataBase.AppDataBase;
@@ -33,17 +34,17 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
     private Activity activity;
     private RecyclerView.LayoutManager mLayoutManager;
     private listenerOneDafAdapter mListener;
-    private ArrayList<Daf> mMaster1;
-    private ArrayList<Daf> myMaster2;
-    private ArrayList<Daf> mMaster3;
-    private ArrayList<Daf> myListALLDaf = new ArrayList<>();
-    private ArrayList<Daf> myListDafToDisplay = new ArrayList<>();
-    private ArrayList<Daf> myListFilterDaf = new ArrayList<>();
+    private ArrayList<DafLearned> mMaster1;
+    private ArrayList<DafLearned> myMaster2;
+    private ArrayList<DafLearned> mMaster3;
+    private ArrayList<DafLearned> myListALLDaf = new ArrayList<>();
+    private ArrayList<DafLearned> myListDafToDisplay = new ArrayList<>();
+    private ArrayList<DafLearned> myListFilterDaf = new ArrayList<>();
     private int currentTabString;
 
 
 
-    public DafAdapter(Activity activity, RecyclerView.LayoutManager layoutManager, ArrayList<Daf> mMaster1 , ArrayList<Daf> mMaster2, ArrayList<Daf> mMaster3, listenerOneDafAdapter mListener) {
+    public DafAdapter(Activity activity, RecyclerView.LayoutManager layoutManager, ArrayList<DafLearned> mMaster1 , ArrayList<DafLearned> mMaster2, ArrayList<DafLearned> mMaster3, listenerOneDafAdapter mListener) {
         this.activity = activity;
         this.mLayoutManager = layoutManager;
         this.mMaster1 = mMaster1;
@@ -76,14 +77,14 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         return position;
     }
 
-    private void initLearning(ArrayList<Daf> mMaster1) {
+    private void initLearning(ArrayList<DafLearned> mMaster1) {
         this.myListALLDaf.addAll(mMaster1);
         this.myListDafToDisplay.addAll(myListALLDaf);
         scrollRecyclerView(myListALLDaf);
         setSummaryLearning(R.string.all,myListALLDaf);
     }
 
-    private void scrollRecyclerView(ArrayList<Daf> myListALLDaf) {
+    private void scrollRecyclerView(ArrayList<DafLearned> myListALLDaf) {
         if (myListALLDaf.size() > 2000) {
             int todayDaf = findTodayDafHayomi(myListALLDaf);
             if (todayDaf != -1) {
@@ -97,10 +98,10 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         }
     }
 
-    private int findLastPageLearned(ArrayList<Daf> myListALLDaf) {
+    private int findLastPageLearned(ArrayList<DafLearned> myListALLDaf) {
         int lastLearned =-1;
         for (int i = myListALLDaf.size()-1; i >= 0 ; i--) {
-            if (myListALLDaf.get(i).isLearning()) {
+            if (myListALLDaf.get(i).isLearned()) {
                 lastLearned = i;
                 break;
             }
@@ -108,7 +109,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         return lastLearned;
     }
 
-    private int findTodayDafHayomi(ArrayList<Daf> myListALLDaf) {
+    private int findTodayDafHayomi(ArrayList<DafLearned> myListALLDaf) {
         int todayDafInList = -1;
         String today = UtilsCalender.dateStringFormat(Calendar.getInstance());
         for (int i = 0; i < myListALLDaf.size(); i++) {
@@ -120,7 +121,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         return todayDafInList;
     }
 
-    private void setSummaryLearning(int tabString, ArrayList<Daf> mList) {
+    private void setSummaryLearning(int tabString, ArrayList<DafLearned> mList) {
         currentTabString = tabString;
         switch(tabString) {
             case R.string.all:
@@ -137,20 +138,20 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         }
     }
 
-    private int calculateHowMuchLearned(ArrayList<Daf> mList) {
+    private int calculateHowMuchLearned(ArrayList<DafLearned> mList) {
         int learned = 0;
-        for (Daf daf: mList) {
-            if (daf.isLearning()){
+        for (DafLearned daf: mList) {
+            if (daf.isLearned()){
                 learned++;
             }
         }
         return learned;
     }
 
-    private int calculateHowMuchSkipped(ArrayList<Daf> mList) {
+    private int calculateHowMuchSkipped(ArrayList<DafLearned> mList) {
         int learned = mList.size();
-        for (Daf daf: mList) {
-            if (daf.isLearning()){
+        for (DafLearned daf: mList) {
+            if (daf.isLearned()){
                 learned--;
             }
         }
@@ -158,10 +159,10 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
     }
 
 
-    private String getNameLearning(ArrayList<Daf> mList) {
-        if (mList.size() > 0) {
-            return myListALLDaf.get(0).getTypeOfStudy().equals(stringDafHayomi) ? myListALLDaf.get(0).getTypeOfStudy() : String.format(Locale.getDefault(),"%s %s", activity.getString(R.string.masechet), myListALLDaf.get(0).getTypeOfStudy());
-        }
+    private String getNameLearning(ArrayList<DafLearned> mList) {
+//        if (mList.size() > 0) {
+//            return myListALLDaf.get(0).getTypeOfStudy().equals(stringDafHayomi) ? myListALLDaf.get(0).getTypeOfStudy() : String.format(Locale.getDefault(),"%s %s", activity.getString(R.string.masechet), myListALLDaf.get(0).getTypeOfStudy());
+//        }
         return "";
     }
 
@@ -177,7 +178,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
 
         if (filter == FILTERS.learned){
             for (int i = 0; i <myListALLDaf.size() ; i++) {
-                if (myListALLDaf.get(i).isLearning()) {
+                if (myListALLDaf.get(i).isLearned()) {
                     myListFilterDaf.add(myListALLDaf.get(i));
                 }
             }
@@ -192,7 +193,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
                myLastPageHasBeenLearned = findLastPageLearned(myListALLDaf);
                 if (myLastPageHasBeenLearned != -1) {
                     for (int i = 0; i <= myLastPageHasBeenLearned; i++) {
-                        if (!myListALLDaf.get(i).isLearning()) {
+                        if (!myListALLDaf.get(i).isLearned()) {
                             myListFilterDaf.add(myListALLDaf.get(i));
                         }
                     }
@@ -203,7 +204,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
                 todayDaf = findTodayDafHayomi(myListALLDaf);
                 if (todayDaf != -1) {
                     for (int i = 0; i <= todayDaf-1; i++) {
-                        if (!myListALLDaf.get(i).isLearning()) {
+                        if (!myListALLDaf.get(i).isLearned()) {
                             myListFilterDaf.add(myListALLDaf.get(i));
                         }
                     }
@@ -244,14 +245,14 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
     public void filterOneMasechet(String nameMasechet){
         myListFilterDaf.clear();
         for (int i = 0; i <myListALLDaf.size() ; i++) {
-            if (myListALLDaf.get(i).getMasechet().equals(nameMasechet)) {
+            if (myListALLDaf.get(i).getMasechetName().equals(nameMasechet)) {
                 myListFilterDaf.add(myListALLDaf.get(i));
             }
         }
         changeDisplayList(myListFilterDaf);
     }
 
-    private void changeDisplayList(ArrayList<Daf> mNewList) {
+    private void changeDisplayList(ArrayList<DafLearned> mNewList) {
         myListDafToDisplay.clear();
         myListDafToDisplay.addAll(mNewList);
         notifyDataSetChanged();
@@ -267,7 +268,7 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
        private CheckBox chazara2;
        private CheckBox chazara3;
        private TextView showDafTV;
-       private Daf mDaf;
+       private DafLearned mDaf;
 
 
         ViewHolder(View itemView) {
@@ -286,10 +287,17 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
 
 
             ifLearn.setOnClickListener(v -> {
+                mDaf.setLearned(ifLearn.isChecked());
+                if(ifLearn.isChecked()){
+                    AppDataBase.getInstance(activity).daoLearning().insertDaf(mDaf);
+//                    update server
+                }else {
+                    AppDataBase.getInstance(activity).daoLearning().deleteDaf(mDaf.getStudyPlanID(),mDaf.getMasechetName(),mDaf.getPageNumber());
+                }
                 inCancelingStudyCancelChazara();
 
-                AppDataBase.getInstance(activity).daoLearning().updateIsLearning(ifLearn.isChecked(),mDaf.getIndexTypeOfStudy() ,mDaf.getMasechet(),mDaf.getPageNumber());
-                updateListIfLearning(ifLearn.isChecked());
+//                AppDataBase.getInstance(activity).daoLearning().updateIsLearning(ifLearn.isChecked(),mDaf.getIndexTypeOfStudy() ,mDaf.getMasechet(),mDaf.getPageNumber());
+//                updateListIfLearning(ifLearn.isChecked());
                 updateSummaryLearning();
             });
 
@@ -331,8 +339,8 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
 
         private void updateListIfLearning(boolean checked) {
             for (int i = 0; i <myListALLDaf.size() ; i++) {
-                if (myListALLDaf.get(i).getMasechet().equals(mDaf.getMasechet()) && myListALLDaf.get(i).getPageNumber() == mDaf.getPageNumber()){
-                    myListALLDaf.get(i).setLearning(checked);
+                if (myListALLDaf.get(i).getMasechetName().equals(mDaf.getMasechetName()) && myListALLDaf.get(i).getPageNumber() == mDaf.getPageNumber()){
+                    myListALLDaf.get(i).setLearned(checked);
                     return;
                 }
             }
@@ -371,24 +379,24 @@ public class DafAdapter extends RecyclerView.Adapter<DafAdapter.ViewHolder> {
         }
 
         private void updateChazaraListAndDB(int chazara) {
-            AppDataBase.getInstance(activity).daoLearning().updateNumOfChazara(chazara, mDaf.getIndexTypeOfStudy(),mDaf.getMasechet(), mDaf.getPageNumber());
+            AppDataBase.getInstance(activity).daoLearning().updateChazara(chazara ,mDaf.getStudyPlanID(),mDaf.getMasechetName(),mDaf.getPageNumber());
             updateListInChazara(chazara);
         }
 
         private void updateListInChazara(int chazara) {
             for (int i = 0; i <myListALLDaf.size() ; i++) {
-                if (myListALLDaf.get(i).getMasechet().equals(mDaf.getMasechet()) && myListALLDaf.get(i).getPageNumber() == mDaf.getPageNumber()){
+                if (myListALLDaf.get(i).getMasechetName().equals(mDaf.getMasechetName()) && myListALLDaf.get(i).getPageNumber() == mDaf.getPageNumber()){
                     myListALLDaf.get(i).setChazara(chazara);
                     return;
                 }
             }
         }
 
-        public void setHolder(Daf mDaf) {
+        public void setHolder(DafLearned mDaf) {
             this.mDaf = mDaf;
-            initWantChazara(mDaf.getWantChazara());
-            ifLearn.setChecked(mDaf.isLearning());
-            masechet.setText(mDaf.getMasechet());
+//            initWantChazara(mDaf.getWantChazara());
+            ifLearn.setChecked(mDaf.isLearned());
+            masechet.setText(mDaf.getMasechetName());
             numDaf.setText(ConvertIntToPage.intToPage(mDaf.getPageNumber()));
             initChazara(mDaf.getChazara());
             if (mDaf.getPageDate() != null && !mDaf.getPageDate().isEmpty()) {

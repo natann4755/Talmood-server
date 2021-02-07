@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.model.Daf;
+import com.example.model.DafLearned;
 import com.example.model.enums.FILTERS;
 import com.example.myapp.R;
 import com.example.myapp.adapters.AllMasechtotAdapter;
@@ -36,9 +37,9 @@ public class ShewStudyRvFragment extends Fragment implements AllMasechtotAdapter
     private static Bundle args;
     private FragmentShewStudyRvBinding binding;
     private TabLayout tabLayout;
-    private ArrayList<Daf> myListLearning1 = new ArrayList<>();
-    private ArrayList<Daf> myListLearning2 = new ArrayList<>();
-    private ArrayList<Daf> myListLearning3 = new ArrayList<>();
+    private ArrayList<DafLearned> myListLearning1 = new ArrayList<>();
+    private ArrayList<DafLearned> myListLearning2 = new ArrayList<>();
+    private ArrayList<DafLearned> myListLearning3 = new ArrayList<>();
     private RecyclerView recyclerViewPage;
     private DafAdapter myAdapter;
 
@@ -46,7 +47,7 @@ public class ShewStudyRvFragment extends Fragment implements AllMasechtotAdapter
 
 
 
-    public static ShewStudyRvFragment newInstance(ArrayList<Daf> myList1, ArrayList<Daf> myList2, ArrayList<Daf> myList3) {
+    public static ShewStudyRvFragment newInstance(ArrayList<DafLearned> myList1, ArrayList<DafLearned> myList2, ArrayList<DafLearned> myList3) {
         ShewStudyRvFragment fragment = new ShewStudyRvFragment();
         args = new Bundle();
         args.putParcelableArrayList(KEY_STUDY_1, myList1);
@@ -87,12 +88,12 @@ public class ShewStudyRvFragment extends Fragment implements AllMasechtotAdapter
 
     private void initRVMasechtot() {
         binding.showStudyRVMasechtot.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        ArrayList<Daf> listDafHayomi = null;
-        if (myListLearning1.size() > 2000) {
+        ArrayList<DafLearned> listDafHayomi = null;
+        if (myListLearning1 != null && myListLearning1.size() > 2000) {
             listDafHayomi = myListLearning1;
-        } else if (myListLearning2.size() > 2000) {
+        } else if (myListLearning2 != null && myListLearning2.size() > 2000) {
             listDafHayomi = myListLearning2;
-        } else if (myListLearning3.size() > 2000) {
+        } else if (myListLearning3 != null && myListLearning3.size() > 2000) {
             listDafHayomi = myListLearning3;
         }
         if (listDafHayomi != null) {
@@ -103,13 +104,13 @@ public class ShewStudyRvFragment extends Fragment implements AllMasechtotAdapter
     }
 
 
-    private ArrayList<String> getNameAllMasechtot(ArrayList<Daf> listDafHayomi) {
+    private ArrayList<String> getNameAllMasechtot(ArrayList<DafLearned> listDafHayomi) {
         ArrayList<String> allMasechtot = new ArrayList<>();
         for (int i = 1; i < listDafHayomi.size(); i++) {
             if (allMasechtot.size() == 0) {
-                allMasechtot.add(listDafHayomi.get(i).getMasechet());
-            } else if (!listDafHayomi.get(i).getMasechet().equals(allMasechtot.get(allMasechtot.size() - 1))) {
-                allMasechtot.add(listDafHayomi.get(i).getMasechet());
+                allMasechtot.add(listDafHayomi.get(i).getMasechetName());
+            } else if (!listDafHayomi.get(i).getMasechetName().equals(allMasechtot.get(allMasechtot.size() - 1))) {
+                allMasechtot.add(listDafHayomi.get(i).getMasechetName());
             }
         }
         return allMasechtot;

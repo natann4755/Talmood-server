@@ -80,60 +80,60 @@ public class DeleteStudyFragment extends Fragment {
     }
 
     private void initListeners() {
-        binding.deleteStudyBU.setOnClickListener(v -> {
-            int selectedId = binding.deleteTypeOfStudyRG.getCheckedRadioButtonId();
-            switch (selectedId) {
-                case R.id.typeOfStudy1_RB:
-//                    AppDataBase.getInstance(getContext()).daoLearning().deleteStudyPlan(int StudyPlanID);
-
-
-                    deleteStudy(1);
-                    myListLearning1.clear();
-                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(2);
-                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(3);
-                    break;
-
-
-
-                case R.id.typeOfStudy2_RB:
-                    deleteStudy(2);
-                    myListLearning2.clear();
-                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(3);
-                    break;
-                case R.id.typeOfStudy3_RB:
-
-
-                    deleteStudy(3);
-                    myListLearning3.clear();
-                    break;
-            }
-            startActivity(new Intent(getActivity(), SplashActivity.class));
-            Objects.requireNonNull(getActivity()).finish();
-        });
+//        binding.deleteStudyBU.setOnClickListener(v -> {
+//            int selectedId = binding.deleteTypeOfStudyRG.getCheckedRadioButtonId();
+//            switch (selectedId) {
+//                case R.id.typeOfStudy1_RB:
+////                    AppDataBase.getInstance(getContext()).daoLearning().deleteStudyPlan(int StudyPlanID);
+//
+//
+//                    deleteStudy(1);
+//                    myListLearning1.clear();
+//                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(2);
+//                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(3);
+//                    break;
+//
+//
+//
+//                case R.id.typeOfStudy2_RB:
+//                    deleteStudy(2);
+//                    myListLearning2.clear();
+//                    AppDataBase.getInstance(getContext()).daoLearning().updateIndexTypeOfStudy(3);
+//                    break;
+//                case R.id.typeOfStudy3_RB:
+//
+//
+//                    deleteStudy(3);
+//                    myListLearning3.clear();
+//                    break;
+//            }
+//            startActivity(new Intent(getActivity(), SplashActivity.class));
+//            Objects.requireNonNull(getActivity()).finish();
+//        });
     }
 
     private void deleteStudy(int indexStudy) {
-        AppDataBase.getInstance(getContext()).daoLearning().deleteTypeOfLeaning(indexStudy);
-        AppDataBase.getInstance(getContext()).daoLearning().updateDeletedLeaning(indexStudy);
+//        AppDataBase.getInstance(getContext()).daoLearning().deleteTypeOfLeaning(indexStudy);
+//        AppDataBase.getInstance(getContext()).daoLearning().updateDeletedLeaning(indexStudy);
     }
 
     private void initViews() {
-        linearLayoutButtons = Objects.requireNonNull(getActivity()).findViewById(R.id.typeOfStudy_buttons_LL);
-        linearLayoutButtons.setVisibility(View.GONE);
-        if (myListLearning1 != null && myListLearning1.size()>0){
-            binding.typeOfStudy1RB.setText(myListLearning1.get(0).getTypeOfStudy());
-        }else {
-            binding.typeOfStudy1RB.setVisibility(View.GONE);
-        }
-        if (myListLearning2 != null && myListLearning2.size()>0){
-            binding.typeOfStudy2RB.setText(myListLearning2.get(0).getTypeOfStudy());
-        }else {
-            binding.typeOfStudy2RB.setVisibility(View.GONE);
-        }
-        if (myListLearning3 != null && myListLearning3.size()>0){
-            binding.typeOfStudy3RB.setText(myListLearning3.get(0).getTypeOfStudy());
-        }else {
-            binding.typeOfStudy3RB.setVisibility(View.GONE);
-        }
+//        linearLayoutButtons = Objects.requireNonNull(getActivity()).findViewById(R.id.typeOfStudy_buttons_LL);
+//        linearLayoutButtons.setVisibility(View.GONE);
+//        if (myListLearning1 != null && myListLearning1.size()>0){
+//            binding.typeOfStudy1RB.setText(myListLearning1.get(0).getTypeOfStudy());
+//        }else {
+//            binding.typeOfStudy1RB.setVisibility(View.GONE);
+//        }
+//        if (myListLearning2 != null && myListLearning2.size()>0){
+//            binding.typeOfStudy2RB.setText(myListLearning2.get(0).getTypeOfStudy());
+//        }else {
+//            binding.typeOfStudy2RB.setVisibility(View.GONE);
+//        }
+//        if (myListLearning3 != null && myListLearning3.size()>0){
+//            binding.typeOfStudy3RB.setText(myListLearning3.get(0).getTypeOfStudy());
+//        }else {
+//            binding.typeOfStudy3RB.setVisibility(View.GONE);
+//        }
     }
 }
